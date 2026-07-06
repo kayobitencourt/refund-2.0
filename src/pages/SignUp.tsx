@@ -1,4 +1,4 @@
-import { z, ZodError } from 'zod';
+import { ZodError } from 'zod';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router';
 import { AxiosError } from 'axios';
@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { signUpSchema } from '../schema/signUpSchema';
 
 export function SignUp() {
   const [name, setName] = useState('');
@@ -48,18 +49,6 @@ export function SignUp() {
       setIsLoading(false);
     }
   }
-
-  const signUpSchema = z
-    .object({
-      name: z.string().trim().min(1, { message: 'Informe o nome' }),
-      email: z.string().email({ message: 'E-mail inválido' }),
-      password: z.string().min(6, { message: 'Senha deve ter pelo menos 6 dígitos' }),
-      passwordConfirm: z.string({ message: 'Confirme a senha' }),
-    })
-    .refine((data) => data.password === data.passwordConfirm, {
-      message: 'Senhas não coincidem',
-      path: [passwordConfirm],
-    });
 
   return (
     <form onSubmit={onSubmit} className='w-full flex flex-col gap-4'>
