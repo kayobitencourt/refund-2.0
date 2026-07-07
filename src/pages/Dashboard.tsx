@@ -12,7 +12,7 @@ import { Button } from '../components/Button';
 import { Pagination } from '../components/Pagination';
 import { RefundItem, RefundItemProps } from '../components/RefundItem';
 
-const PER_PAGE = 5;
+const PER_PAGE = 1;
 
 export function Dashboard() {
   const [name, setName] = useState('');
@@ -65,7 +65,7 @@ export function Dashboard() {
 
   useEffect(() => {
     fetchRefunds();
-  }, []);
+  }, [page]);
 
   return (
     <div className='bg-gray-500 rounded-xl p-10 md:min-w-[768px]'>
