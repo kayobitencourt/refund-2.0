@@ -6,6 +6,6 @@ type UserApiResponse = {
     id: string;
     name: string;
     email: string;
-    rolet: UserAPIRule;
+    role: UserAPIRule;
   };
 };
